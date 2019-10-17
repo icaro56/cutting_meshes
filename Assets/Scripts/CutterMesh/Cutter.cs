@@ -84,6 +84,16 @@ public class Cutter
         secondMesh.uv = rightMesh.UVs.ToArray();
         secondMesh.triangles = rightMesh.Indices(0);
 
+        Component.Destroy(_originalGameObject.GetComponent<SphereCollider>());
+        Component.Destroy(secondGameObject.GetComponent<SphereCollider>());
+
+        _originalGameObject.AddComponent<MeshCollider>();
+        secondGameObject.AddComponent<MeshCollider>();
+
+        _originalGameObject.GetComponent<MeshCollider>().convex = true;
+        secondGameObject.GetComponent<MeshCollider>().convex = true;
+
+
         currentlyCutting = false;
     }
 
